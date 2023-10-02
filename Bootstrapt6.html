@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        .login-box {
+            background-color: #ccc;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 0 auto;
+            max-width: 500px; 
+            margin-top: 50px;
+        }
+
+       
+        .red-btn {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+
+       
+        .red-btn:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto"> 
+                <div class="login-box">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hobbies">Hobbies</label>
+                            <textarea class="form-control" id="hobbies" rows="3" placeholder="Your Hobbies"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block red-btn">Submit</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

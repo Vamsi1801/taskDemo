@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+</head>
+<body>
+
+  <h1>Form</h1>
+
+  <form action="javascript:void(0)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+
+    <label for="website">Website:</label>
+    <input type="url" id="website" name="website">
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message"></textarea>
+
+    <button type="submit" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function submitForm() {
+      // Get the values from the form fields.
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const website = document.getElementById('website').value;
+      const message = document.getElementById('message').value;
+
+      
+      if (name === '' || email === '' || message === '') {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('website').value = '';
+      document.getElementById('message').value = '';
+    }
+  </script>
+
+  <style>
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  </style>
+
+</body>
+</html>

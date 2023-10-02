@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date and Time in IST</title>
+</head>
+<body>
+
+  <h1>Date and Time in IST</h1>
+
+  <button type="button" onclick="showDate()">Show Date</button>
+  <button type="button" onclick="showTime()">Show Time</button>
+
+  <p id="result"></p>
+
+  <script>
+    function showDate() {
+      const date = new Date();
+      const formattedDate = date.toLocaleDateString('en-IN', {
+        month: 'numeric',
+        day: 'numeric',
+        year: 'numeric',
+      });
+
+      document.getElementById('result').innerHTML = `The current date is: ${formattedDate}`;
+    }
+
+    function showTime() {
+      const date = new Date();
+      const formattedTime = date.toLocaleTimeString('en-IN', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      });
+
+      document.getElementById('result').innerHTML = `The current time is: ${formattedTime}`;
+    }
+  </script>
+
+</body>
+</html>
