@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .calculator {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+      .calculator .display {
+        grid-column: span 4;
+        background-color: #fff;
+        padding: 10px;
+        text-align: right;
+        font-size: 24px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+      .calculator .button {
+        background-color: #f0f0f0;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        cursor: pointer;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+      .calculator .button:hover {
+        background-color: #e0e0e0;
+      }
+    </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Calculator extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            display: "0",
+            currentInput: "",
+            previousInput: "",
+            operator: null,
+          };
+        }
+
+        handleDigitClick = (digit) => {
+          if (this.state.display === "0" || this.state.operator) {
+            this.setState({ display: digit, operator: null });
+          } else {
+            this.setState({ display: this.state.display + digit });
+          }
+        };
+
+        handleOperatorClick = (operator) => {
+          if (this.state.operator) {
+            this.calculate();
+          } else {
+            this.setState({
+              previousInput: this.state.display,
+              display: operator,
+              operator: operator,
+            });
+          }
+        };
+
+        calculate = () => {
+          const previousInput = parseFloat(this.state.previousInput);
+          const currentInput = parseFloat(this.state.display);
+          let result = 0;
+
+          switch (this.state.operator) {
+            case "+":
+              result = previousInput + currentInput;
+              break;
+            case "-":
+              result = previousInput - currentInput;
+              break;
+            case "*":
+              result = previousInput * currentInput;
+              break;
+            case "/":
+              result = previousInput / currentInput;
+              break;
+            default:
+              result = currentInput;
+          }
+
+          this.setState({
+            display: result.toString(),
+            currentInput: "",
+            previousInput: result.toString(),
+            operator: null,
+          });
+        };
+
+        handleClear = () => {
+          this.setState({
+            display: "0",
+            currentInput: "",
+            previousInput: "",
+            operator: null,
+          });
+        };
+
+        render() {
+          return (
+            <div className="calculator">
+              <div className="display">{this.state.display}</div>
+              <div className="button" onClick={() => this.handleClear()}>C</div>
+              <div className="button" onClick={() => this.handleOperatorClick("/")}>/</div>
+              <div className="button" onClick={() => this.handleOperatorClick("*")}>x</div>
+              <div className="button" onClick={() => this.handleDigitClick("7")}>7</div>
+              <div className="button" onClick={() => this.handleDigitClick("8")}>8</div>
+              <div className="button" onClick={() => this.handleDigitClick("9")}>9</div>
+              <div className="button" onClick={() => this.handleOperatorClick("-")}>-</div>
+              <div className="button" onClick={() => this.handleDigitClick("4")}>4</div>
+              <div className="button" onClick={() => this.handleDigitClick("5")}>5</div>
+              <div className="button" onClick={() => this.handleDigitClick("6")}>6</div>
+              <div className="button" onClick={() => this.handleOperatorClick("+")}>+</div>
+              <div className="button" onClick={() => this.handleDigitClick("1")}>1</div>
+              <div className="button" onClick={() => this.handleDigitClick("2")}>2</div>
+              <div className="button" onClick={() => this.handleDigitClick("3")}>3</div>
+              <div className="button" onClick={() => this.handleOperatorClick("=")}>=</div>
+              <div className="button" onClick={() => this.handleDigitClick("0")}>0</div>
+              <div className="button" onClick={() => this.handleDigitClick(".")}>.</div>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Calculator />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
